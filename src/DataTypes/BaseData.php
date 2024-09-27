@@ -16,6 +16,12 @@ class BaseData {
           $this->$local = $params[$remote];
         }
       }
+
+      foreach (array_keys($this->mapping) as $local) {
+        if (isset($params[$local])) {
+          $this->$local = $params[$local];
+        }
+      }
     }
   }
 
