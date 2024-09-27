@@ -20,6 +20,8 @@ class BaseRequest {
 
   protected $baseUrl = 'https://api.videosdk.live';
 
+  protected $token;
+
   public function __construct(Config $config, Client $httpClient) {
     $this->httpClient = $httpClient;
     $this->config = $config;
@@ -29,21 +31,29 @@ class BaseRequest {
 
   }
 
-  public function execute(string $path, mixed $body, string $method='POST') {
-    $base_url = sprintf('%s/v%s/%s', $this->baseUrl , $this->config->getVersion() , $path);
-
+  public function getToken()
+  {
     $issuedAt = new \DateTimeImmutable();
     $expire = $issuedAt->modify('+2 hours')->getTimestamp();
-
-     $payload = [
+    if (!isset($this->token)) {
+      $payload = [
         'apikey' => $this->config->getApiKey(),
         //'version' => $this->config->getVersion(),
         'iat' => $issuedAt->getTimestamp(),
         'exp' => $expire,
         'permissions' => ['allow_join'],
         'roles' => ['crawler', 'rtc']
-     ];
-     $token = JWT::encode($payload, $this->config->getApiSecret(), 'HS256');
+      ];
+      $this->token = JWT::encode($payload, $this->config->getApiSecret(), 'HS256');
+    }
+
+    return $this->token;
+  }
+
+  public function execute(string $path, mixed $body, string $method='POST') {
+    $base_url = sprintf('%s/v%s/%s', $this->baseUrl , $this->config->getVersion() , $path);
+
+    $token = $this->getToken();
 
      $headers = [
        'Authorization' => $token,
