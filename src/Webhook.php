@@ -2,7 +2,10 @@
 
 namespace Gfarishyan\VideosdkLivePhp;
 
+use Gfarishyan\VideosdkLivePhp\DataTypes\WebhookInterface;
+
 class Webhook implements WebhookInterface {
+
   protected string $webhookType;
 
   protected array $data;

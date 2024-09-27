@@ -28,7 +28,7 @@ class Room extends BaseData
 
   protected $permissions;
 
-  protected $webhook;
+  protected WebhookConfig $webhook;
 
   protected $closeConfig;
 

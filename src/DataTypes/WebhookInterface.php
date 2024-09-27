@@ -1,6 +1,6 @@
 <?php
 
-namespace Gfarishyan\VideosdkLivePhp;
+namespace Gfarishyan\VideosdkLivePhp\DataTypes;
 
 interface WebhookInterface {
   public const PARTICIPANT_JOINED = 'participant-joined';
