@@ -1,5 +1,7 @@
 <?php
 
+namespace Gfarishyan\VideosdkLivePhp\DataTypes;
+
 class AutocloseConfig extends BaseData
 {
 
