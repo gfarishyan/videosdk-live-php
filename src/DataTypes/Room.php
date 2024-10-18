@@ -138,9 +138,10 @@ class Room extends BaseData
   public static function fromResponse($response)
   {
       //let's convert cratedAt and updatedAt to php date strings
-     $response['createdAt'] = new \DateTime('Y-m-d\TH:i:s\Z', $response['createdAt']);
-     $response['updatedAt'] = new \DateTime('Y-m-d\TH:i:s\Z', $response['updatedAt']);
-     $response['autoCloseConfig'] = AutocloseConfig::fromResponse($response);
+     $response['createdAt'] = new \DateTime($response['createdAt']);
+     $response['updatedAt'] = new \DateTime($response['updatedAt']);
+     $response['autoCloseConfig'] = AutocloseConfig::fromResponse($response['autoCloseConfig']);
+     $response['webhook'] = WebhookConfig::fromResponse($response['webhook']);
      //$response['autoCloseConfig'] = AutocloseConfig::fromResponse($response);
      return new static($response);
   }

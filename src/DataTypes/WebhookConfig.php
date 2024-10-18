@@ -36,4 +36,9 @@ class WebhookConfig extends BaseData {
     ];
   }
 
+  public static function fromResponse(array $response) :WebhookConfig
+  {
+      return new static($response);
+  }
+
 }

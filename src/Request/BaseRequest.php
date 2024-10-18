@@ -5,10 +5,12 @@ namespace Gfarishyan\VideosdkLivePhp\Request;
 
 use Gfarishyan\VideosdkLivePhp\Config;
 use Gfarishyan\VideosdkLivePhp\DataTypes\BaseData;
+use Gfarishyan\VideosdkLivePhp\VideoSdkLivexception;
 use GuzzleHttp\Client;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GuzzleHttp\Exception\RequestException;
+
 
 class BaseRequest {
 
@@ -62,7 +64,6 @@ class BaseRequest {
 
     $options = [
       'headers' => $headers,
-      'debug' => true
     ];
 
     if (!empty($body)) {
@@ -72,11 +73,12 @@ class BaseRequest {
      try {
       $response = $this->httpClient->request(strtoupper($method), $base_url, $options);
      } catch (RequestException $e) {
-       throw new RequestException($e->getMessage(), $e->getCode(), $e);
+       throw new VideoSdkLivexception($e->getMessage(), $e->getCode(), $e);
+     } catch (\Exception $e) {
+        throw new \VideoSdkLivexception($e->getMessage(), $e->getCode());
      }
 
     $content = $response->getBody()->getContents();
-
     if ($content) {
       return json_decode($content, true);
     }

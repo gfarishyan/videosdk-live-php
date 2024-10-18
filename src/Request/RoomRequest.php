@@ -14,7 +14,9 @@ class RoomRequest extends BaseRequest {
   public function create(BaseData $data) :Room  {
     $path = 'rooms';
     $method = 'POST';
+
     $response = $this->execute($path, $data->toRequest(), $method);
+
     return Room::fromResponse($response);
   }
 

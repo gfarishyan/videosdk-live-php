@@ -2,6 +2,8 @@
 
 namespace Gfarishyan\VideosdkLivePhp\DataTypes;
 
+use Gfarishyan\VideosdkLivePhp\DataTypes\BaseData;
+
 class AutocloseConfig extends BaseData
 {
 
@@ -39,6 +41,10 @@ class AutocloseConfig extends BaseData
        'type' => $this->type,
        'duration' => $this->duration,
      ];
+   }
+
+   public static function fromResponse($response) {
+     return new static($response);
    }
 
 }
