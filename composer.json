@@ -3,7 +3,7 @@
     "description": "Implemen tvideosdk.live api",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^7.9",
+        "guzzlehttp/guzzle": "^7.10",
         "firebase/php-jwt": "^7.0"
     },
     "autoload": {
