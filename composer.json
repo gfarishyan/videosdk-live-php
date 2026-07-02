@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.13",
-        "firebase/php-jwt": "^7.0"
+        "firebase/php-jwt": "^7.1"
     },
     "autoload": {
         "psr-4": {
